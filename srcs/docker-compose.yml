@@ -1,0 +1,21 @@
+volumes:
+  wp-database:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/iury/data/wp-database
+
+services:
+  mariadb:
+    container_name: mariadb-container
+    pull_policy: build
+    image: "mariadb-image:inception"
+    build:
+      context: requirements/mariadb
+      args:
+        - WP_DATABASE_NAME
+    attach: false
+    volumes:
+      - wp-database:/var/lib/mysql
+    env_file: .env
