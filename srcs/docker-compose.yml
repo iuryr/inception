@@ -15,7 +15,24 @@ services:
       context: requirements/mariadb
       args:
         - WP_DATABASE_NAME
-    attach: false
+        - WP_DATABASE_USER
+        - WP_DATABASE_PASSWORD
+    env_file: .env
     volumes:
       - wp-database:/var/lib/mysql
+
+  wordpress:
+    container_name: wordpress-container
+    pull_policy: build
+    image: "wordpress-image:inception"
+    build:
+      context: requirements/wordpress
+      args:
+        - WP_DATABASE_NAME
+        - WP_DATABASE_USER
+        - WP_DATABASE_PASSWORD
     env_file: .env
+    #change later tty
+    # tty: true
+    depends_on:
+      - mariadb
