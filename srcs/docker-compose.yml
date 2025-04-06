@@ -16,7 +16,8 @@ services:
       args:
         - WP_DATABASE_NAME
         - WP_DATABASE_USER
-        - WP_DATABASE_PASSWORD
+      secrets:
+        - wp_database_password
     env_file: .env
     volumes:
       - wp-database:/var/lib/mysql
@@ -30,9 +31,12 @@ services:
       args:
         - WP_DATABASE_NAME
         - WP_DATABASE_USER
-        - WP_DATABASE_PASSWORD
     env_file: .env
-    #change later tty
-    # tty: true
+    secrets:
+      - wp_database_password
     depends_on:
       - mariadb
+
+secrets:
+  wp_database_password:
+    file: ./wp_database_password.secret

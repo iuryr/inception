@@ -2,7 +2,6 @@ FROM alpine:3.21
 
 ARG WP_DATABASE_NAME
 ARG WP_DATABASE_USER
-ARG WP_DATABASE_PASSWORD
 
 COPY tools/setup_wordpress.sh /tmp
 

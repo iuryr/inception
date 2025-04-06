@@ -14,7 +14,7 @@ mv wp-cli.phar /usr/local/bin/wp
 wp config create --path=/var/www/wordpress \
 	--dbname=$WP_DATABASE_NAME \
 	--dbuser=$WP_DATABASE_USER \
-	--dbpass=$WP_DATABASE_PASSWORD \
+	--dbpass=`cat /run/secrets/wp_database_password` \
 	--dbhost=mariadb
 
 wp core install --path=/var/www/wordpress \
