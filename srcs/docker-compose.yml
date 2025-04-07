@@ -27,6 +27,8 @@ services:
         - WP_DATABASE_NAME
         - WP_DATABASE_USER
         - WP_DATABASE_PASSWORD
+    networks:
+      - inception-network
     volumes:
       - wp-database:/var/lib/mysql
 
@@ -38,6 +40,8 @@ services:
       # no_cache: true
       context: requirements/wordpress
     env_file: .env
+    networks:
+      - inception-network
     volumes:
       - wp-files:/var/www/wordpress
     depends_on:
@@ -50,9 +54,17 @@ services:
     build:
       context: requirements/nginx
     env_file: .env
+    networks:
+      - inception-network
     ports:
       - "443:443"
     volumes:
       - wp-files:/var/www/wordpress
     depends_on:
       - wordpress
+
+networks:
+  inception-network:
+    driver: bridge
+    name: Inception Network
+
