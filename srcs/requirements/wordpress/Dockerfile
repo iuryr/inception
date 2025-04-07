@@ -1,8 +1,5 @@
 FROM alpine:3.21
 
-ARG WP_DATABASE_NAME
-ARG WP_DATABASE_USER
-
 COPY tools/setup_wordpress.sh /tmp
 
 WORKDIR /var/www
@@ -30,6 +27,10 @@ RUN apk update && \
 	apk add php83-phar --no-cache && \
 	curl -LO https://wordpress.org/latest.tar.gz &&\
 	tar xvf latest.tar.gz && \
-	rm -rf latest.tar.gz
+	rm -rf latest.tar.gz && \
+	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp && \
+	chmod a+x /tmp/setup_wordpress.sh
 
-ENTRYPOINT ["ash", "-f", "/tmp/setup_wordpress.sh"]
+ENTRYPOINT ["/tmp/setup_wordpress.sh"]

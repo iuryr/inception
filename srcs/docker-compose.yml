@@ -1,3 +1,5 @@
+name: inception
+
 volumes:
   wp-database:
     driver: local
@@ -12,13 +14,12 @@ services:
     pull_policy: build
     image: "mariadb-image:inception"
     build:
+      # no_cache: true
       context: requirements/mariadb
       args:
         - WP_DATABASE_NAME
         - WP_DATABASE_USER
-      secrets:
-        - wp_database_password
-    env_file: .env
+        - WP_DATABASE_PASSWORD
     volumes:
       - wp-database:/var/lib/mysql
 
@@ -27,16 +28,8 @@ services:
     pull_policy: build
     image: "wordpress-image:inception"
     build:
+      # no_cache: true
       context: requirements/wordpress
-      args:
-        - WP_DATABASE_NAME
-        - WP_DATABASE_USER
     env_file: .env
-    secrets:
-      - wp_database_password
     depends_on:
       - mariadb
-
-secrets:
-  wp_database_password:
-    file: ./wp_database_password.secret

@@ -2,6 +2,7 @@ all: setup
 	docker compose -f ./srcs/docker-compose.yml  up -d
 
 setup:
+	sudo rm -rf /home/iury/data
 	mkdir -p /home/iury/data/wp-database
 	mkdir -p /home/iury/data/wp-files
 
@@ -13,9 +14,11 @@ delete:
 	docker rm basic_alpine
 
 build-mariadb:
+	mkdir -p /home/iury/data/wp-database
 	docker compose -f ./srcs/docker-compose.yml build mariadb
 
 mariadb:
+	mkdir -p /home/iury/data/wp-database
 	docker compose -f ./srcs/docker-compose.yml up -d mariadb
 
 
