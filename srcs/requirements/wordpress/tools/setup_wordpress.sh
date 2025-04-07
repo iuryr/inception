@@ -20,6 +20,6 @@ wp core install --path=/var/www/wordpress \
 
 wp user create --path=/var/www/wordpress iury iury@fake.com --role=author
 
-wp theme install --path=/var/www/wordpress twentytwentytwo --activate
+wp theme install twentytwentytwo --path=/var/www/wordpress --activate
 
 php-fpm83 -F
