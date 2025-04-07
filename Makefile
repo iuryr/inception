@@ -38,4 +38,10 @@ clean:
 fclean: clean
 	docker system prune --volumes --all --force
 
+basic:
+	docker run --name alpine_basic -p 9000:9000 -it alpine:3.21 ash
+
+delete:
+	docker rm alpine_basic
+
 re: clean all

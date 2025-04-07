@@ -64,6 +64,17 @@ services:
       - wp-files:/var/www/wordpress
     depends_on:
       - wordpress
+      - adminer
+    restart: always
+
+  adminer:
+    container_name: adminer-container
+    pull_policy: build
+    image: "adminer-image:inception"
+    build:
+      context: bonus/adminer
+    networks: 
+    - inception-network
     restart: always
 
 networks:
