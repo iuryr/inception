@@ -8,6 +8,13 @@ volumes:
       type: none
       device: /home/iury/data/wp-database
 
+  wp-files:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/iury/data/wp-files
+
 services:
   mariadb:
     container_name: mariadb-container
@@ -31,5 +38,7 @@ services:
       # no_cache: true
       context: requirements/wordpress
     env_file: .env
+    volumes:
+      - wp-files:/var/www/wordpress
     depends_on:
       - mariadb
