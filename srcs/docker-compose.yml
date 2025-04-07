@@ -42,3 +42,17 @@ services:
       - wp-files:/var/www/wordpress
     depends_on:
       - mariadb
+
+  nginx:
+    container_name: nginx-container
+    pull_policy: build
+    image: "nginx-image:inception"
+    build:
+      context: requirements/nginx
+    env_file: .env
+    ports:
+      - "443:443"
+    volumes:
+      - wp-files:/var/www/wordpress
+    depends_on:
+      - wordpress
