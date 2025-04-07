@@ -18,6 +18,8 @@ wp core install --path=/var/www/wordpress \
 	--admin_email=$WP_ADMIN_EMAIL \
 	--skip-email 
 
-wp theme install twentytwentytwo --activate
+wp user create --path=/var/www/wordpress iury iury@fake.com --role=author
+
+wp theme install --path=/var/www/wordpress twentytwentytwo --activate
 
 php-fpm83 -F
