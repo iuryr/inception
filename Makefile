@@ -1,42 +1,41 @@
 all: setup up
 
 setup:
-	sudo chmod a+x /etc/hosts
-	sudo cat /etc/hosts | grep "iusantos.42.fr" || echo "127.0.0.1 iusantos.42.fr" >> /etc/hosts
+	grep "iusantos.42.fr" /etc/hosts || echo "127.0.0.1 iusantos.42.fr" | sudo tee --append /etc/hosts > /dev/null
 	sudo mkdir -p /home/iury/data/wp-database
 	sudo mkdir -p /home/iury/data/wp-files
 
 up:
-	sudo docker compose -f ./srcs/docker-compose.yml  up -d
+	docker compose -f ./srcs/docker-compose.yml  up -d
 
 down:
-	sudo docker compose -f ./srcs/docker-compose.yml down
+	docker compose -f ./srcs/docker-compose.yml down
 
 build-mariadb:
 	sudo mkdir -p /home/iury/data/wp-database
-	sudo docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate mariadb
+	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate mariadb
 
 mariadb:
 	sudo mkdir -p /home/iury/data/wp-database
-	sudo docker compose -f ./srcs/docker-compose.yml up -d mariadb
+	docker compose -f ./srcs/docker-compose.yml up -d mariadb
 
 build-wordpress:
-	sudo docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate wordpress
+	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate wordpress
 
 wordpress:
-	sudo docker compose -f ./srcs/docker-compose.yml up -d wordpress
+	docker compose -f ./srcs/docker-compose.yml up -d wordpress
 
 build-nginx:
-	sudo docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate nginx
+	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate nginx
 
 nginx:
-	sudo docker compose -f ./srcs/docker-compose.yml up -d nginx
+	docker compose -f ./srcs/docker-compose.yml up -d nginx
 
 clean:
 	sudo rm -rf /home/iury/data/wp-database /home/iury/data/wp-files
-	sudo docker compose -f ./srcs/docker-compose.yml down --volumes --remove-orphans
+	docker compose -f ./srcs/docker-compose.yml down --volumes --remove-orphans
 
 fclean: clean
-	sudo docker system prune --volumes --all --force
+	docker system prune --volumes --all --force
 
 re: clean all
