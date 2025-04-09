@@ -83,17 +83,10 @@ services:
     image: "ftp-image:inception"
     build:
       context: bonus/ftp
-      args:
-        - FTP_USER
-        - FTP_PASSWORD
-        - FTP_PATH
     volumes:
       - wp-files:/var/www/wordpress
     networks:
       - inception-network
-    ports:
-      - "21:21"
-      - "10090-10100:10090-10100"
     depends_on:
       - wordpress
     restart: always
