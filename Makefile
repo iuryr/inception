@@ -31,6 +31,12 @@ build-nginx:
 nginx:
 	docker compose -f ./srcs/docker-compose.yml up -d nginx
 
+build-ftp:
+	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate ftp
+
+ftp: setup
+	docker compose -f ./srcs/docker-compose.yml up -d ftp
+
 clean:
 	sudo rm -rf /home/iury/data/wp-database /home/iury/data/wp-files
 	docker compose -f ./srcs/docker-compose.yml down --volumes --remove-orphans

@@ -5,7 +5,7 @@ ARG WP_DATABASE_USER
 ARG WP_DATABASE_PASSWORD
 
 RUN apk update &&\
-	apk add --no-cache mariadb mariadb-client &&\
+	apk add --no-cache mariadb mariadb-client ncftp &&\
 	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 
 COPY ./tools/setup_database.sh /
