@@ -91,6 +91,18 @@ services:
       - wordpress
     restart: always
 
+  site:
+    container_name: site-container
+    pull_policy: build
+    image: "site-image:inception"
+    build:
+      context: bonus/site
+    networks:
+      - inception-network
+    depends_on:
+      - nginx
+    restart: always
+
 networks:
   inception-network:
     driver: bridge
