@@ -1,6 +1,18 @@
-# Alpine
-Penultimate version (as per subject requirement): 3.21 (https://hub.docker.com/_/alpine/tags)
+# Definition of environment variables
 
-# Nginx service
-Because the subject requires Nginx with TLSv1.2 or TLSv1.3 only, we also have to install `openssl` in order
-to generate an SSL certificate and private key in order to enable HTTPS.
+## Database
+WP_DATABASE_NAME=XXXX
+WP_DATABASE_USER=XXXX
+WP_DATABASE_PASSWORD=XXXX
+WP_DATABASE_HOST=XXXX
+
+## Wordpress
+WP_URL=XXXX
+WP_TITLE=XXXX
+WP_ADMIN_USER=XXXX
+WP_ADMIN_PASSWORD=XXXX
+WP_ADMIN_EMAIL=XXXX@fake.com
+
+##TLS params
+CERT_KEY=XXX
+CERT_FILE=XXX
