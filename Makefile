@@ -6,7 +6,7 @@ setup:
 	sudo mkdir -p /home/iury/data/wp-files
 
 up:
-	docker compose -f ./srcs/docker-compose.yml  up -d
+	docker-compose -f ./srcs/docker-compose.yml  up -d
 
 down:
 	docker compose -f ./srcs/docker-compose.yml down
@@ -39,7 +39,7 @@ ftp: setup
 
 clean:
 	sudo rm -rf /home/iury/data/wp-database /home/iury/data/wp-files
-	docker compose -f ./srcs/docker-compose.yml down --volumes --remove-orphans
+	docker-compose -f ./srcs/docker-compose.yml down --volumes --remove-orphans
 
 fclean: clean
 	docker system prune --volumes --all --force

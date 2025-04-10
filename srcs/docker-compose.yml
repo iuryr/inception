@@ -1,4 +1,4 @@
-name: inception
+version: "3"
 
 volumes:
   wp-database:
