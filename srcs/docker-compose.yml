@@ -103,6 +103,18 @@ services:
       - nginx
     restart: always
 
+  redis:
+    container_name: redis-container
+    pull_policy: build
+    image: "redis-image:inception"
+    build:
+      context: bonus/redis
+    networks:
+      - inception-network
+    depends_on:
+      - wordpress
+    restart: always
+
 networks:
   inception-network:
     driver: bridge

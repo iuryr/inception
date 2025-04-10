@@ -8,6 +8,7 @@ RUN apk update && \
 	apk add php83 --no-cache && \
 	apk add	php83-curl \
 			php83-dom \
+			php83-tokenizer \
 			php83-exif \
 			php83-fileinfo \
 			php83-pecl-igbinary \
