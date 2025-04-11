@@ -9,33 +9,33 @@ up:
 	docker-compose -f ./srcs/docker-compose.yml  up -d
 
 down:
-	docker compose -f ./srcs/docker-compose.yml down
+	docker-compose -f ./srcs/docker-compose.yml down
 
 build-mariadb:
 	sudo mkdir -p /home/iury/data/wp-database
-	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate mariadb
+	docker-compose -f ./srcs/docker-compose.yml up -d --build --force-recreate mariadb
 
 mariadb:
 	sudo mkdir -p /home/iury/data/wp-database
-	docker compose -f ./srcs/docker-compose.yml up -d mariadb
+	docker-compose -f ./srcs/docker-compose.yml up -d mariadb
 
 build-wordpress:
-	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate wordpress
+	docker-compose -f ./srcs/docker-compose.yml up -d --build --force-recreate wordpress
 
 wordpress:
-	docker compose -f ./srcs/docker-compose.yml up -d wordpress
+	docker-compose -f ./srcs/docker-compose.yml up -d wordpress
 
 build-nginx:
-	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate nginx
+	docker-compose -f ./srcs/docker-compose.yml up -d --build --force-recreate nginx
 
 nginx:
-	docker compose -f ./srcs/docker-compose.yml up -d nginx
+	docker-compose -f ./srcs/docker-compose.yml up -d nginx
 
 build-ftp:
-	docker compose -f ./srcs/docker-compose.yml up -d --build --force-recreate ftp
+	docker-compose -f ./srcs/docker-compose.yml up -d --build --force-recreate ftp
 
 ftp: setup
-	docker compose -f ./srcs/docker-compose.yml up -d ftp
+	docker-compose -f ./srcs/docker-compose.yml up -d ftp
 
 clean:
 	sudo rm -rf /home/iury/data/wp-database /home/iury/data/wp-files

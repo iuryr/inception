@@ -38,7 +38,6 @@ services:
     pull_policy: build
     image: "wordpress-image:inception"
     build:
-      # no_cache: true
       context: requirements/wordpress
     env_file: .env
     networks:
@@ -55,6 +54,9 @@ services:
     image: "nginx-image:inception"
     build:
       context: requirements/nginx
+      args:
+        - CRT_FILE
+        - CRT_KEY
     env_file: .env
     networks:
       - inception-network
